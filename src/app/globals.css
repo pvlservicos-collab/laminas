@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Papernotes';
+  src: url('/fonts/papernotes/Papernotes.woff2') format('woff2'),
+       url('/fonts/papernotes/PapernotesRegular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Papernotes';
+  src: url('/fonts/papernotes/Papernotes Bold.woff2') format('woff2'),
+       url('/fonts/papernotes/PapernotesBold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CBF';
+  src: url('/fonts/CBFHomeAway2026.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Aplica maiúsculo em todos os elementos com font-titulo */
+[style*="--font-titulo"] {
+  text-transform: uppercase;
+}
+
+@theme inline {
+  --font-papernotes: 'Papernotes', cursive;
+  --font-titulo: 'Anton', sans-serif;
+  /* México: verde #006847, vermelho #CE1126, branco #FFFFFF */
+  --color-copa-yellow: #CE1126;
+  --color-copa-yellow-light: #FFD6DA;
+  --color-copa-blue: #006847;
+  --color-copa-blue-hover: #004f35;
+  --color-copa-green: #CE1126;
+  --color-copa-white: #FFFFFF;
+}
+
+:root {
+  --background: #006847;
+  --foreground: #ffffff;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Papernotes', cursive;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #004f35;
+}
+::-webkit-scrollbar-thumb {
+  background: #CE1126;
+  border-radius: 3px;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 104, 71, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(206, 17, 38, 0.6); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+}
+
+@keyframes loading-bar {
+  0% { width: 0%; }
+  30% { width: 40%; }
+  60% { width: 70%; }
+  90% { width: 90%; }
+  100% { width: 100%; }
+}
+
+@keyframes loading-infinite {
+  0% { width: 0%; margin-left: 0%; }
+  50% { width: 60%; margin-left: 20%; }
+  100% { width: 0%; margin-left: 100%; }
+}
+
+.animate-loading-infinite {
+  animation: loading-infinite 2s ease-in-out infinite;
+}
+
+/* Wiggle suave para figurinhas */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-8deg) translate3d(0, 0, 0); }
+  50% { transform: rotate(-8deg) translate3d(0, -3px, 0); }
+}
+
+@keyframes wiggle-center {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -3px, 0); }
+}
+
+@keyframes wiggle-down {
+  0%, 100% { transform: rotate(8deg) translate3d(0, 0, 0); }
+  50% { transform: rotate(8deg) translate3d(0, -3px, 0); }
+}
+
+
+/* Efeito de brilho passando */
+@keyframes shine {
+  0% { left: -100%; }
+  50%, 100% { left: 150%; }
+}
+
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: shine 3s ease-in-out infinite;
+}
